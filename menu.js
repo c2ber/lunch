@@ -25,19 +25,17 @@ window.menus = [
     main: "제육, 김치찌개",
     name: "금호식당",
     link: "https://place.map.kakao.com/1664448308"
-  }
+  },
   {
     main: "잔치국수, 보쌈서비스",
     name: "순자국수,보쌈",
     link: "https://place.map.kakao.com/1756861545"
-  }
-
+  },
   {
     main: "모듬국밥, 후라이서비스",
     name: "곱창나무수제국밥 광주본점",
     link: "https://place.map.kakao.com/589954272"
-  }
-
+  },
   {
     main: "뼈해장국, 후라이서비스",
     name: "어등돌솥뼈해장국 하남2호점",
