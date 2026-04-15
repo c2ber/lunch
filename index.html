@@ -36,12 +36,10 @@
       color: #111827;
     }
 
-    /* 🔥 여기 수정된 부분 */
     .sub-info {
       margin-bottom: 16px;
       font-size: 0.8rem;
       color: #6b7280;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -59,10 +57,6 @@
       cursor: pointer;
     }
 
-    .kakao-btn:active {
-      background: #e6cf00;
-    }
-
     button.main-btn {
       width: 100%;
       padding: 14px;
@@ -72,11 +66,6 @@
       background: #2563eb;
       color: white;
       cursor: pointer;
-    }
-
-    button.main-btn:active {
-      transform: scale(0.97);
-      background: #1d4ed8;
     }
 
     .menu-list {
@@ -101,12 +90,12 @@
     .title {
       font-weight: bold;
       font-size: 1.05rem;
-      margin-bottom: 6px;
     }
 
     .place {
       font-size: 0.95rem;
       color: #374151;
+      margin-top: 4px;
     }
 
     .link {
@@ -130,10 +119,8 @@
 
 <body>
   <div class="container">
-    
     <h1>🍱 오늘 뭐 먹지?</h1>
 
-    <!-- 🔥 여기!! (h1 바로 아래) -->
     <div class="sub-info">
       <div class="update">📅 업데이트: </div>
       <button class="kakao-btn" onclick="openKakaoChat()">
@@ -148,7 +135,6 @@
     <div id="message" class="message">
       버튼을 눌러보세요 😎
     </div>
-
   </div>
 
   <script src="menu.js"></script>
@@ -159,18 +145,15 @@
     function openKakaoChat() {
       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
-      const appUrl = `kakaotalk://openChat?url=${encodeURIComponent(kakaoChatUrl)}`;
-      const webUrl = kakaoChatUrl;
-
       if (!isMobile) {
-        window.open(webUrl, '_blank');
+        window.open(kakaoChatUrl, '_blank');
         return;
       }
 
-      window.location.href = appUrl;
+      window.location.href = `kakaotalk://openChat?url=${encodeURIComponent(kakaoChatUrl)}`;
 
       setTimeout(() => {
-        window.location.href = webUrl;
+        window.location.href = kakaoChatUrl;
       }, 1500);
     }
 
@@ -183,13 +166,10 @@
         return;
       }
 
-      const appUrl = `kakaomap://place?id=${placeId}`;
-      const webUrl = link;
-
-      window.location.href = appUrl;
+      window.location.href = `kakaomap://place?id=${placeId}`;
 
       setTimeout(() => {
-        window.location.href = webUrl;
+        window.location.href = link;
       }, 1500);
     }
 
@@ -198,7 +178,7 @@
     }
 
     function recommendMenus() {
-      const selectedMenus = getRandomMenus(menus, 3);
+      const selectedMenus = getRandomMenus(window.menus, 3);
 
       const menuList = document.getElementById('menu-list');
       const message = document.getElementById('message');
@@ -222,9 +202,10 @@
       });
     }
 
-    // 업데이트 날짜 표시
-    document.querySelector('.update').textContent =
-      "📅 업데이트: " + (typeof lastUpdate !== 'undefined' ? lastUpdate : "정보 없음");
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelector('.update').textContent =
+        "📅 업데이트: " + (window.lastUpdate || "정보 없음");
+    });
   </script>
 </body>
 </html>
