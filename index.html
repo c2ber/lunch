@@ -36,7 +36,7 @@
       color: #111827;
     }
 
-    button {
+    button.main-btn {
       width: 100%;
       padding: 14px;
       font-size: 1.1rem;
@@ -48,7 +48,7 @@
       transition: 0.2s;
     }
 
-    button:active {
+    button.main-btn:active {
       transform: scale(0.97);
       background: #1d4ed8;
     }
@@ -74,7 +74,7 @@
 
     .title {
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       margin-bottom: 6px;
     }
 
@@ -83,20 +83,15 @@
       color: #374151;
     }
 
-    .address {
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-
     .link {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-      border-radius: 6px;
+      margin-top: 10px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      border-radius: 8px;
       background: #10b981;
       color: white;
-      text-decoration: none;
+      border: none;
+      cursor: pointer;
     }
 
     .link:active {
@@ -115,7 +110,7 @@
   <div class="container">
     <h1>🍱 오늘 뭐 먹지?</h1>
 
-    <button onclick="recommendMenus()">추천 받기</button>
+    <button class="main-btn" onclick="recommendMenus()">추천 받기</button>
 
     <div id="menu-list" class="menu-list"></div>
 
@@ -134,6 +129,28 @@
       return shuffled.slice(0, count);
     }
 
+    function openKakaoMap(link) {
+      const placeId = link.split('/').pop();
+      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+
+      // PC → 웹
+      if (!isMobile) {
+        window.open(link, '_blank');
+        return;
+      }
+
+      // 모바일 → 앱 시도
+      const appUrl = `kakaomap://place?id=${placeId}`;
+      const webUrl = link;
+
+      window.location.href = appUrl;
+
+      // fallback
+      setTimeout(() => {
+        window.location.href = webUrl;
+      }, 1500);
+    }
+
     function recommendMenus() {
       const selectedMenus = getRandomMenus(menus, 3);
 
@@ -147,13 +164,12 @@
         const item = document.createElement('div');
         item.className = `menu-item rank-${index + 1}`;
 
-        const link = `https://map.naver.com/v5/search/${encodeURIComponent(menu.place + ' ' + menu.address)}`;
-
         item.innerHTML = `
-          <div class="title">${index + 1}순위 - ${menu.name}</div>
-          <div class="place">🏪 ${menu.place}</div>
-          <div class="address">📍 ${menu.address}</div>
-          <a class="link" href="${link}" target="_blank">지도 보기</a>
+          <div class="title">${index + 1}순위 - ${menu.main}</div>
+          <div class="place">🏪 ${menu.name}</div>
+          <button class="link" onclick="openKakaoMap('${menu.link}')">
+            지도 보기
+          </button>
         `;
 
         menuList.appendChild(item);
