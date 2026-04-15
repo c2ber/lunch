@@ -1,3 +1,5 @@
+const lastUpdate = "2026-04-15";
+
 const menus = [
   {
     main: "삼선짬뽕, 고추간짜장",
