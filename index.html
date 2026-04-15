@@ -36,14 +36,17 @@
       color: #111827;
     }
 
+    /* 🔥 여기 수정된 부분 */
     .sub-info {
       margin-bottom: 16px;
       font-size: 0.8rem;
       color: #6b7280;
-    }
 
-    .update {
-      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .kakao-btn {
@@ -69,7 +72,6 @@
       background: #2563eb;
       color: white;
       cursor: pointer;
-      transition: 0.2s;
     }
 
     button.main-btn:active {
@@ -118,10 +120,6 @@
       cursor: pointer;
     }
 
-    .link:active {
-      background: #059669;
-    }
-
     .message {
       margin-top: 20px;
       font-size: 0.9rem;
@@ -132,8 +130,10 @@
 
 <body>
   <div class="container">
+    
     <h1>🍱 오늘 뭐 먹지?</h1>
 
+    <!-- 🔥 여기!! (h1 바로 아래) -->
     <div class="sub-info">
       <div class="update">📅 업데이트: </div>
       <button class="kakao-btn" onclick="openKakaoChat()">
@@ -148,19 +148,13 @@
     <div id="message" class="message">
       버튼을 눌러보세요 😎
     </div>
+
   </div>
 
-  <!-- 데이터 -->
   <script src="menu.js"></script>
 
-  <!-- 로직 -->
   <script>
     const kakaoChatUrl = "https://open.kakao.com/o/s7PWVxqi";
-
-    function getRandomMenus(arr, count) {
-      const shuffled = [...arr].sort(() => Math.random() - 0.5);
-      return shuffled.slice(0, count);
-    }
 
     function openKakaoChat() {
       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
@@ -197,6 +191,10 @@
       setTimeout(() => {
         window.location.href = webUrl;
       }, 1500);
+    }
+
+    function getRandomMenus(arr, count) {
+      return [...arr].sort(() => Math.random() - 0.5).slice(0, count);
     }
 
     function recommendMenus() {
