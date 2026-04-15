@@ -88,6 +88,12 @@
       cursor: pointer;
     }
 
+    .category {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+    
     .message { margin-top: 20px; font-size: 0.9rem; color: #6b7280; }
   </style>
 </head>
@@ -173,6 +179,7 @@
 
         item.innerHTML = `
           <div class="title">${index + 1}순위 - ${menu.main}</div>
+          <div class="category">🍽️ ${menu.category}</div>
           <div class="place">🏪 ${menu.name}</div>
           <button class="link" onclick="openKakaoMap('${menu.link}')">
             지도 보기
