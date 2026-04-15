@@ -3,107 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오늘의 점심 메뉴 추천</title>
+  <title>점심 뭐 먹지?</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f4f6;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f3f4f6;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
       padding: 20px;
     }
+
     .container {
-      text-align: center;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
       width: 100%;
-    }
-    h1 {
-      font-size: 2rem;
-      color: #1f2937;
-      margin-bottom: 20px;
-    }
-    button {
-      background-color: #2563eb;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #1d4ed8;
-    }
-    .menu-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .menu-item {
-      background-color: #f9fafb;
-      padding: 15px;
-      border-radius: 8px;
-      flex: 1 1 150px;
+      max-width: 480px;
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       text-align: center;
-      font-size: 1.1rem;
-      color: #374151;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .message {
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #111827;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.97);
+      background: #1d4ed8;
+    }
+
+    .menu-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .menu-item {
+      text-align: left;
+      padding: 16px;
+      border-radius: 12px;
+      background: #f9fafb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .rank-1 { border-left: 6px solid #ef4444; }
+    .rank-2 { border-left: 6px solid #f59e0b; }
+    .rank-3 { border-left: 6px solid #3b82f6; }
+
+    .title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .place {
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .address {
+      font-size: 0.85rem;
       color: #6b7280;
-      font-size: 1rem;
+    }
+
+    .link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      background: #10b981;
+      color: white;
+      text-decoration: none;
+    }
+
+    .link:active {
+      background: #059669;
+    }
+
+    .message {
       margin-top: 20px;
+      font-size: 0.9rem;
+      color: #6b7280;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>오늘의 점심메뉴는?</h1>
-    <button onclick="recommendMenus()">추천하기</button>
+    <h1>🍱 오늘 뭐 먹지?</h1>
+
+    <button onclick="recommendMenus()">추천 받기</button>
+
     <div id="menu-list" class="menu-list"></div>
-    <p id="message" class="message">버튼을 눌러 메뉴를 추천받아보세요!</p>
+
+    <div id="message" class="message">
+      버튼을 눌러보세요 😎
+    </div>
   </div>
 
+  <!-- 데이터 -->
+  <script src="menu.js"></script>
+
+  <!-- 로직 -->
   <script>
-    const menus = [
-      '김치찌개', '된장찌개', '부대찌개', '순두부찌개', '청국장찌개', '동태찌개', '고추장찌개', '된장국', '미역국', '소고기무국',
-      '비빔밥', '돌솥비빔밥', '불고기', '돼지갈비', '삼겹살', '갈비탕', '설렁탕', '육개장', '삼계탕', '추어탕',
-      '콩국수', '냉면', '비빔냉면', '고등어조림', '갈치조림', '조기조림', '멸치볶음', '오징어볶음', '낙지볶음', '제육볶음',
-      '김밥', '충무김밥', '잡채', '불고기덮밥', '소고기덮밥', '장어덮밥', '회덮밥', '연어덮밥', '새우볶음밥', '김치볶음밥',
-      '된장찌개정식', '김치찌개정식', '부대찌개정식', '순두부찌개정식', '돼지불백', '오삼불고기', '닭볶음탕', '닭갈비', '떡갈비',
-      '해물파전', '김치전', '감자전', '빈대떡', '수육', '보쌈', '족발', '순대국', '뼈해장국', '콩나물국밥',
-      '김치볶음', '두부김치', '멸치국수', '칼국수', '수제비', '만둣국', '떡국', '어묵탕', '오징어젓갈', '명란젓',
-      '잡곡밥', '흑미밥', '약밥', '영양돌솥밥', '곰탕', '도가니탕', '꼬리곰탕', '소불고기', '돼지국밥', '순대볶음',
-      '오리불고기', '오리로스', '훈제오리', '갈비찜', '돼지등뼈찜', '아구찜', '해물찜', '꽁치구이', '정식백반', '집밥정식'
-    ];
+    function getRandomMenus(arr, count) {
+      const shuffled = [...arr].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, count);
+    }
 
     function recommendMenus() {
-      // 메뉴 배열을 섞고 상위 5개 선택
-      const shuffled = menus.sort(() => Math.random() - 0.5);
-      const selectedMenus = shuffled.slice(0, 5);
+      const selectedMenus = getRandomMenus(menus, 3);
 
-      // 메뉴 표시
       const menuList = document.getElementById('menu-list');
-      menuList.innerHTML = '';
-      selectedMenus.forEach(menu => {
-        const menuItem = document.createElement('div');
-        menuItem.className = 'menu-item';
-        menuItem.textContent = menu;
-        menuList.appendChild(menuItem);
-      });
+      const message = document.getElementById('message');
 
-      // 메시지 숨기기
-      document.getElementById('message').style.display = 'none';
+      menuList.innerHTML = '';
+      message.style.display = 'none';
+
+      selectedMenus.forEach((menu, index) => {
+        const item = document.createElement('div');
+        item.className = `menu-item rank-${index + 1}`;
+
+        const link = `https://map.naver.com/v5/search/${encodeURIComponent(menu.place + ' ' + menu.address)}`;
+
+        item.innerHTML = `
+          <div class="title">${index + 1}순위 - ${menu.name}</div>
+          <div class="place">🏪 ${menu.place}</div>
+          <div class="address">📍 ${menu.address}</div>
+          <a class="link" href="${link}" target="_blank">지도 보기</a>
+        `;
+
+        menuList.appendChild(item);
+      });
     }
   </script>
 </body>
