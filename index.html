@@ -142,6 +142,14 @@
   <script>
     const kakaoChatUrl = "https://open.kakao.com/o/s7PWVxqi";
 
+    const parsedMenus = parseMenus(window.rawMenus);
+
+    const filtered = selectedCategory === "전체"
+      ? parsedMenus
+      : parsedMenus.filter(m => m.category === selectedCategory);
+    
+    const selectedMenus = getRandomMenus(filtered, 3);
+
     function openKakaoChat() {
       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
@@ -172,7 +180,13 @@
         window.location.href = link;
       }, 1500);
     }
-
+    function parseMenus(raw) {
+      return raw.trim().split("\n").map(line => {
+        const [category, main, name, link] = line.split("|");
+        return { category, main, name, link };
+      });
+    }
+    
     function getRandomMenus(arr, count) {
       return [...arr].sort(() => Math.random() - 0.5).slice(0, count);
     }
