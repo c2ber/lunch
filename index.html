@@ -32,8 +32,32 @@
 
     h1 {
       font-size: 1.6rem;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       color: #111827;
+    }
+
+    .sub-info {
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .update {
+      margin-bottom: 6px;
+    }
+
+    .kakao-btn {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      border-radius: 6px;
+      border: none;
+      background: #fee500;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .kakao-btn:active {
+      background: #e6cf00;
     }
 
     button.main-btn {
@@ -110,6 +134,13 @@
   <div class="container">
     <h1>🍱 오늘 뭐 먹지?</h1>
 
+    <div class="sub-info">
+      <div class="update">📅 업데이트: </div>
+      <button class="kakao-btn" onclick="openKakaoChat()">
+        💬 맛집 추가 신청
+      </button>
+    </div>
+
     <button class="main-btn" onclick="recommendMenus()">추천 받기</button>
 
     <div id="menu-list" class="menu-list"></div>
@@ -124,28 +155,45 @@
 
   <!-- 로직 -->
   <script>
+    const kakaoChatUrl = "https://open.kakao.com/o/s7PWVxqi";
+
     function getRandomMenus(arr, count) {
       const shuffled = [...arr].sort(() => Math.random() - 0.5);
       return shuffled.slice(0, count);
+    }
+
+    function openKakaoChat() {
+      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+
+      const appUrl = `kakaotalk://openChat?url=${encodeURIComponent(kakaoChatUrl)}`;
+      const webUrl = kakaoChatUrl;
+
+      if (!isMobile) {
+        window.open(webUrl, '_blank');
+        return;
+      }
+
+      window.location.href = appUrl;
+
+      setTimeout(() => {
+        window.location.href = webUrl;
+      }, 1500);
     }
 
     function openKakaoMap(link) {
       const placeId = link.split('/').pop();
       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
-      // PC → 웹
       if (!isMobile) {
         window.open(link, '_blank');
         return;
       }
 
-      // 모바일 → 앱 시도
       const appUrl = `kakaomap://place?id=${placeId}`;
       const webUrl = link;
 
       window.location.href = appUrl;
 
-      // fallback
       setTimeout(() => {
         window.location.href = webUrl;
       }, 1500);
@@ -175,6 +223,10 @@
         menuList.appendChild(item);
       });
     }
+
+    // 업데이트 날짜 표시
+    document.querySelector('.update').textContent =
+      "📅 업데이트: " + (typeof lastUpdate !== 'undefined' ? lastUpdate : "정보 없음");
   </script>
 </body>
 </html>
