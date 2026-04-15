@@ -1,6 +1,6 @@
-const lastUpdate = "2026-04-15";
+window.lastUpdate = "2026-04-15";
 
-const menus = [
+window.menus = [
   {
     main: "삼선짬뽕, 고추간짜장",
     name: "천자문 우산점",
