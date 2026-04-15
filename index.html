@@ -137,7 +137,8 @@
     </div>
   </div>
 
-  <script src="menu.js"></script>
+  <!-- main.js는 그대로 유지 -->
+  <script src="main.js"></script>
 
   <script>
     const kakaoChatUrl = "https://open.kakao.com/o/sakU9xqi";
@@ -178,6 +179,11 @@
     }
 
     function recommendMenus() {
+      if (!window.menus || window.menus.length === 0) {
+        alert("메뉴 데이터가 아직 로딩되지 않았습니다.");
+        return;
+      }
+
       const selectedMenus = getRandomMenus(window.menus, 3);
 
       const menuList = document.getElementById('menu-list');
@@ -191,7 +197,7 @@
         item.className = `menu-item rank-${index + 1}`;
 
         item.innerHTML = `
-          <div class="title">${index + 1}순위 - ${menu.main}</div>
+          <div class="title">${index + 1}순위 - [${menu.category}] ${menu.main}</div>
           <div class="place">🏪 ${menu.name}</div>
           <button class="link" onclick="openKakaoMap('${menu.link}')">
             지도 보기
