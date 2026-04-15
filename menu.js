@@ -1,27 +1,27 @@
 const menus = [
   {
-    name: "삼선짬뽕, 고추간짜장",
-    place: "천자문 우산점",
-    address: "광주 광산구 사암로106번길 99-15 1층"
+    main: "삼선짬뽕, 고추간짜장",
+    name: "천자문 우산점",
+    link: "https://place.map.kakao.com/491748732"
   },
   {
-    name: "고기짬뽕, 중화비빔밥",
-    place: "보배반점 광주하남2지구점",
-    address: "광주 광산구 용아로 391"
+    main: "고기짬뽕, 중화비빔밥",
+    name: "보배반점 광주하남2지구점",
+    link: "https://place.map.kakao.com/1658018290"
   },
   {
-    name: "양평해장국",
-    place: "일품양평해장국 광주어등산CC점",
-    address: "광주 광산구 운수절골길 1-1"
+    main: "양평해장국",
+    name: "일품양평해장국 광주어등산CC점",
+    link: "https://place.map.kakao.com/638703443"
   },
   {
-    name: "김치나베, 눈꽃돈까스",
-    place: "토토로",
-    address: "광주 광산구 소촌로 100 모아엘가아파트상가동102호"
+    main: "김치나베, 눈꽃돈까스",
+    name: "토토로키친",
+    link: "https://place.map.kakao.com/1780143123"
   },
   {
-    name: "제육, 김치찌개",
-    place: "금호식당",
-    address: "광주 광산구 어등대로665번길 3"
+    main: "제육, 김치찌개",
+    name: "금호식당",
+    link: "https://place.map.kakao.com/1664448308"
   }
 ];
