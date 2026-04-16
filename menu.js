@@ -9,4 +9,8 @@ window.rawMenus = `
 한식|잔치국수, 보쌈서비스|순자국수,보쌈|https://place.map.kakao.com/1756861545
 한식|모듬국밥, 후라이서비스|곱창나무수제국밥 광주본점|https://place.map.kakao.com/589954272
 한식|뼈해장국, 후라이서비스|어등돌솥뼈해장국 하남2호점|https://place.map.kakao.com/166423908
+중식|차돌짬뽕|만리장성 선운점|https://place.map.kakao.com/148341393
+일식|초밥 런치 세트|또바기초밥|https://place.map.kakao.com/1822961622
+
+
 `;
