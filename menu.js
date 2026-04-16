@@ -1,4 +1,4 @@
-window.lastUpdate = "2026-04-15";
+window.lastUpdate = "2026-04-16";
 
 window.rawMenus = `
 중식|삼선짬뽕, 고추간짜장|천자문 우산점|https://place.map.kakao.com/491748732
