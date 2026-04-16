@@ -32,6 +32,12 @@ window.rawMenus = `
 한식|제육볶음|울엄니고깃집|https://place.map.kakao.com/21229293
 한식|곰탕|원조나주곰탕하얀집|https://place.map.kakao.com/10187332
 한식|곰탕|광산나주곰탕|https://place.map.kakao.com/8825003
+한식|육계장칼국수|최주원육개장|https://place.map.kakao.com/1210268145
+한식|설렁탕|대양꼬리곰탕|https://place.map.kakao.com/11253690
+뷔페|한식 뷔페, 후라이무한|엄니도시락 한식뷔페 하남1호점|https://place.map.kakao.com/26862587
+한식|애호박국밥|송원식육식당|https://place.map.kakao.com/9868850
+중식|고기짬뽕|임곡반점|https://place.map.kakao.com/12966764
+한식|제육볶음, 김치찌개|임곡사골우거지|https://place.map.kakao.com/253408287
 
 
 
