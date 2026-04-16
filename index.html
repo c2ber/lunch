@@ -88,6 +88,13 @@
       cursor: pointer;
     }
 
+    .title-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    
     .category {
       margin-top: 6px;
       font-size: 0.8rem;
@@ -139,7 +146,17 @@
         window.location.href = kakaoChatUrl;
       }, 1500);
     }
-
+    
+    function getCategoryIcon(category) {
+      switch(category) {
+        case "한식": return "🍚";
+        case "중식": return "🥢";
+        case "일식": return "🍣";
+        case "양식": return "🍝";
+        default: return "🍽️";
+      }
+    }
+    
     function openKakaoMap(link) {
       const placeId = link.split("/").pop();
       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
@@ -178,8 +195,10 @@
         item.className = `menu-item rank-${index + 1}`;
 
         item.innerHTML = `
-          <div class="title">${index + 1}순위 - ${menu.main}</div>
-          <div class="category">🍽️ ${menu.category}</div>
+          <div class="title-row">
+            <div class="title">${index + 1}순위 - ${menu.main}</div>
+            <div class="category-icon">${getCategoryIcon(menu.category)}</div>
+          </div>
           <div class="place">🏪 ${menu.name}</div>
           <button class="link" onclick="openKakaoMap('${menu.link}')">
             지도 보기
