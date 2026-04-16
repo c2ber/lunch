@@ -1,6 +1,7 @@
 window.lastUpdate = "2026-04-16";
 
 window.rawMenus = `
+한식|오늘의식단|구내식당|https://place.map.kakao.com/8228068
 중식|삼선짬뽕, 고추간짜장|천자문 우산점|https://place.map.kakao.com/491748732
 중식|고기짬뽕, 중화비빔밥|보배반점 광주하남2지구점|https://place.map.kakao.com/1658018290
 한식|양평해장국|일품양평해장국 광주어등산CC점|https://place.map.kakao.com/638703443
