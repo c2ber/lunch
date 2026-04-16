@@ -197,7 +197,7 @@
         item.innerHTML = `
           <div class="title-row">
             <div class="title">${index + 1}순위 - ${menu.main}</div>
-            <div class="category-icon">${getCategoryIcon(menu.category)}</div>
+            <div class="category-icon">${getCategoryIcon(menu.category)} ${menu.category}</div>
           </div>
           <div class="place">🏪 ${menu.name}</div>
           <button class="link" onclick="openKakaoMap('${menu.link}')">
