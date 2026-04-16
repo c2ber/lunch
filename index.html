@@ -115,8 +115,8 @@
 
     <div class="sub-info">
       <div class="info-text">
-        <span id="updateText">📅업데이트:</span>
-        <span id="countText">(총0개)</span>
+        <span id="updateText"></span>
+        <span id="countText"></span>
       </div>
       <button class="kakao-btn" onclick="openKakaoChat()">💬 맛집추가</button>
     </div>
@@ -141,7 +141,7 @@
       document.getElementById("updateText").textContent =
         "📅 업데이트: " + (window.lastUpdate || "정보 없음");
       document.getElementById("countText").textContent =
-      `(🍽️ 총 ${menus.length}개)`;
+      `(🍽️ 총${menus.length}개)`;
     }
 
     function openKakaoChat() {
