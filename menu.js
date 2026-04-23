@@ -1,4 +1,4 @@
-window.lastUpdate = "2026-04-16";
+window.lastUpdate = "2026-04-23";
 
 window.rawMenus = `
 한식|오늘의식단|구내식당|https://place.map.kakao.com/8228068
@@ -39,6 +39,7 @@ window.rawMenus = `
 한식|애호박국밥|송원식육식당|https://place.map.kakao.com/9868850
 중식|고기짬뽕|임곡반점|https://place.map.kakao.com/12966764
 한식|제육볶음, 김치찌개|임곡사골우거지|https://place.map.kakao.com/253408287
+한식|알탕, 제육서비스|생태야알탕아 본점|https://place.map.kakao.com/21229293
 
 
 
